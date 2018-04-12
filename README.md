@@ -1,6 +1,6 @@
 # Homework Assignment 17
 
-
+[![Build Status](https://travis-ci.com/PGE383-HPC/assignment17.svg?token=SnMGq692xXXqxzyE6QSj&branch=master)](https://travis-ci.com/PGE383-HPC/assignment17)
 
 This assignment is basically a repeat of [Homework Assignment 14](https://github.com/PGE383-HPC-Spring2018/assignment) were we wrote a `ParallelToughness` class that computes a materials toughness given stress/strain data in file in parallel using `mpi4py`.  Except in this assignment, we will use Epetra data structures and import/export operations to manually load balance the data for the parallel computation.  You should complete the new `EpetraParallelToughness` class. 
 
