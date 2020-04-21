@@ -22,8 +22,8 @@ class EpetraParallelToughness(StressStrainConverter):
 
         
         unbalanced_map = Epetra.Map(-1, len(self.true_stress), 0, self.comm)
-        unbalanced_stress = Epetra.Vector(Epetra.View, unbalanced_map, self.true_stress)
-        unbalanced_strain = Epetra.Vector(Epetra.View, unbalanced_map, self.true_strain)
+        unbalanced_stress = Epetra.Vector(Epetra.Copy, unbalanced_map, self.true_stress)
+        unbalanced_strain = Epetra.Vector(Epetra.Copy, unbalanced_map, self.true_strain)
 
         balanced_map = self.create_balanced_map(unbalanced_map)
 
