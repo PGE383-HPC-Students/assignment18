@@ -3,7 +3,7 @@ import os
 import unittest
 from PyTrilinos import Epetra
 
-from assignment17 import EpetraParallelToughness
+from assignment18 import EpetraParallelToughness
 
 class TestEpetraParallelToughness(unittest.TestCase):
 
