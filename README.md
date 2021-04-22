@@ -1,7 +1,5 @@
 # Homework Assignment 18
 
-[![.github/workflows/main.yml](https://github.com/PGE383-HPC/assignment18/actions/workflows/main.yml/badge.svg)](https://github.com/PGE383-HPC/assignment18/actions/workflows/main.yml)
-
 This assignment is basically a repeat of [Homework Assignment 15](https://github.com/PGE383-HPC-Students/assignment15) were we wrote a `ParallelToughness` class that computes a materials toughness given stress/strain data in file in parallel using `mpi4py`.  Except in this assignment, we will use Epetra data structures and import/export operations to manually load balance the data for the parallel computation.  You should complete the new `EpetraParallelToughness` class. 
 
 I have included a solution to [Homework Assignment 8](https://github.com/PGE383-HPC-Students/assignment8) which includes the class `StressStrainConverter` to read in the data file and create the class attributes `true_stress` and `true_strain`.  You should use `Epetra.Vector`s and create an `Epetra.Import` object to help distribute the data contained in these attributes as evenly as possibly over the `NumProc` of the parallel computation.  **Do not use Isorropia** as a load balancer, that will be the subject of the next assignment.  

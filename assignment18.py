@@ -9,7 +9,7 @@ class EpetraParallelToughness(StressStrainConverter):
 
     def __init__(self, filename, comm):
         super().__init__(filename)
-        
+
         self.comm = comm
         self.rank = comm.MyPID()
         self.size = comm.NumProc()
@@ -20,31 +20,11 @@ class EpetraParallelToughness(StressStrainConverter):
             self.true_stress = np.array([], dtype=np.double)
             self.true_strain = np.array([], dtype=np.double)
 
-        
-        unbalanced_map = Epetra.Map(-1, len(self.true_stress), 0, self.comm)
-        unbalanced_stress = Epetra.Vector(Epetra.Copy, unbalanced_map, self.true_stress)
-        unbalanced_strain = Epetra.Vector(Epetra.Copy, unbalanced_map, self.true_strain)
+        ######################
+        #### Add Code Here ###
+        ######################
 
-        balanced_map = self.create_balanced_map(unbalanced_map)
 
-        importer = Epetra.Import(balanced_map, unbalanced_map)
-
-        self.true_strain = Epetra.Vector(balanced_map)
-        self.true_stress = Epetra.Vector(balanced_map)
-
-        self.true_stress.Import(unbalanced_stress, importer, Epetra.Insert)
-        self.true_strain.Import(unbalanced_strain, importer, Epetra.Insert)
-        
-
-    def create_balanced_map(self, unbalanced_map):
-
-        temp_map = Epetra.Map(unbalanced_map.NumGlobalElements(), 0, self.comm)
-
-        my_global_element_list = temp_map.MyGlobalElements()
-        if self.rank < (self.size - 1):
-            my_global_element_list = np.append(my_global_element_list, [temp_map.MaxMyGID() + 1])
-
-        return Epetra.Map(-1, list(my_global_element_list), 0, self.comm)
 
 
     def compute_toughness(self):
